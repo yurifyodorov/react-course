@@ -40,6 +40,9 @@
         margin: 10px 0 0 0;
         display: block;
       }
+      .test-input {
+        margin: 0 5px 5px 0;
+      }
     </style>
   </head>
   <body>
@@ -75,31 +78,25 @@
 
       class Article extends React.Component {
         state = {
-          visible: false // определили начальное состояние
+          visible: false
         };
-
         handleReadMoreClck = e => {
-          // добавили метод
           e.preventDefault();
           this.setState({ visible: true });
         };
-
         render() {
           const { author, text, bigText } = this.props.data;
           const { visible } = this.state;
-          // console.log('render', this);
           return (
             <div className='article'>
               <p className='news__author'>{author}:</p>
               <p className='news__text'>{text}</p>
-              {/* если не visible, то показывай ссылку */
-              !visible && (
+              {!visible && (
                 <a onClick={this.handleReadMoreClck} href='#' className='news__readmore'>
                   Подробнее
                 </a>
               )}
-              {/* если visible, то показывай big-текст */
-              visible && <p className='news__big-text'>{bigText}</p>}
+              {visible && <p className='news__big-text'>{bigText}</p>}
             </div>
           );
         }
@@ -115,14 +112,8 @@
 
       class News extends React.Component {
         state = {
-          counter: 0 // добавили свойство counter (счетчик)
+          counter: 0
         };
-
-        handleCounter = () => {
-          // добавили новый метод
-          this.setState({ counter: ++this.state.counter }); // в котором увеличиваем счетчик
-        };
-
         renderNews = () => {
           const { data } = this.props;
           let newsTemplate = null;
@@ -139,33 +130,49 @@
         };
         render() {
           const { data } = this.props;
-          const { counter } = this.state; // вытащили counter
+          const { counter } = this.state;
 
           return (
             <div className='news'>
               {this.renderNews()}
-              {/* добавили onClick */
-              data.length ? (
-                <strong onClick={this.handleCounter} className={'news__count'}>
-                  Всего новостей: {data.length}
-                </strong>
-              ) : null}
-              <p>Всего кликов: {counter}</p>
+              {data.length ? <strong className={'news__count'}>Всего новостей: {data.length}</strong> : null}
             </div>
           );
         }
       }
 
-      // добавили propTypes.
-      // propTypes (с маленькой буквы) = свойство News
       News.propTypes = {
-        data: PropTypes.array.isRequired // PropTypes (с большой буквы) = библиотека prop-types
+        data: PropTypes.array.isRequired
       };
+
+      // --- добавили test input ---
+      class TestInput extends React.Component {
+        state = {
+          myValue: ''
+        };
+
+        // используется e.currentTarget.value
+        onChangeHandler = e => {
+          this.setState({ myValue: e.currentTarget.value });
+        };
+
+        render() {
+          return (
+            <input
+              className='test-input'
+              onChange={this.onChangeHandler}
+              value={this.state.myValue}
+              placeholder='введите значение'
+            />
+          );
+        }
+      }
 
       const App = () => {
         return (
           <React.Fragment>
             <h3>Новости</h3>
+            <TestInput /> {/* добавили вывод компонента */}
             <News data={myNews} />
           </React.Fragment>
         );

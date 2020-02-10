@@ -6,7 +6,8 @@ module.exports = {
     //{ value: "build", name: "build:     Сборка проекта или изменения внешних зависимостей"},
     //{ value: "ci", name: "ci:        Настройка CI и работа со скриптами" },
     //{ value: "docs", name: "docs:      Обновление документации" },
-    { value: 'new', name: 'new:   Новая тема' }
+    { value: 'new', name: 'new:   Новая тема' },
+    { value: 'switch_to', name: 'switch_to:   Переключиться на новую тему' }
     // { value: 'feat', name: 'feat:      Добавление нового функционала' },
     // { value: 'fix', name: 'fix:       Исправление ошибок' },
     // {
@@ -26,7 +27,7 @@ module.exports = {
   ],
 
   // Область. Она характеризует фрагмент кода, которую затронули изменения
-  scopes: [{ name: 'theme' }, { name: 'issue' }],
+  scopes: [{ name: 'theme' }, { name: 'another theme' }, { name: 'issue' }],
 
   // Возможность задать спец ОБЛАСТЬ для определенного типа коммита (пример для 'fix')
   /*

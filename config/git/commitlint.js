@@ -32,6 +32,7 @@ module.exports = {
       'always',
       [
         'new', // этот добавил я для себя (не входит в config-conventional)
+        'switch_to', // этот добавил я для себя (не входит в config-conventional)
         'build',
         'ci',
         'docs',
