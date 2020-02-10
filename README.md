@@ -10,4 +10,12 @@ Learning React here
   <li><a href="https://reactjs.org/docs/events.html#supported-events">Полный список событий</a></li>
   <li><a href="https://reactjs.org/docs/react-component.html#setstate">Полный список возможностей setState</a></li>
   <li><a href="https://facebook.github.io/flux/">Что такое flux-подход?</a></li>
+  <li>Как еще можно управлять состоянием?
+    <ul>
+      <li>Redux - это топчик</li>
+      <li>MobX</li>
+      <li>Context API</li>
+      <li><a href="https://facebook.github.io/flux/">flux-подход</a> (чистый flux не используется)</li>
+    </ul>
+  </li>
 </ol>
