@@ -1,0 +1,38 @@
+{
+  "name": "react-course",
+  "version": "1.0.0",
+  "description": "Learning React here",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "config": {
+    "commitizen": {
+      "path": "node_modules/cz-customizable"
+    },
+    "cz-customizable": {
+      "config": "config/git/commitizen.js"
+    }
+  },
+  "husky": {
+    "hooks": {
+      "commit-msg": "commitlint -E HUSKY_GIT_PARAMS -g config/git/commitlint.js"
+    }
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/yurifyodorov/react-course.git"
+  },
+  "author": "Yuri Fedorov",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/yurifyodorov/react-course/issues"
+  },
+  "homepage": "https://github.com/yurifyodorov/react-course#readme",
+  "dependencies": {
+    "commitizen": "^4.0.3",
+    "commitlint": "^8.3.5",
+    "cz-customizable": "^6.2.0",
+    "husky": "^4.2.1"
+  }
+}
