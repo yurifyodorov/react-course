@@ -86,7 +86,8 @@
 
         render() {
           const { author, text, bigText } = this.props.data;
-          const { visible } = this.state; // вытащили visible из this.stat
+          const { visible } = this.state;
+          // console.log('render', this);
           return (
             <div className='article'>
               <p className='news__author'>{author}:</p>
@@ -113,6 +114,15 @@
       };
 
       class News extends React.Component {
+        state = {
+          counter: 0 // добавили свойство counter (счетчик)
+        };
+
+        handleCounter = () => {
+          // добавили новый метод
+          this.setState({ counter: ++this.state.counter }); // в котором увеличиваем счетчик
+        };
+
         renderNews = () => {
           const { data } = this.props;
           let newsTemplate = null;
@@ -129,11 +139,18 @@
         };
         render() {
           const { data } = this.props;
+          const { counter } = this.state; // вытащили counter
 
           return (
             <div className='news'>
               {this.renderNews()}
-              {data.length ? <strong className={'news__count'}>Всего новостей: {data.length}</strong> : null}
+              {/* добавили onClick */
+              data.length ? (
+                <strong onClick={this.handleCounter} className={'news__count'}>
+                  Всего новостей: {data.length}
+                </strong>
+              ) : null}
+              <p>Всего кликов: {counter}</p>
             </div>
           );
         }
