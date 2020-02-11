@@ -193,18 +193,21 @@
           alert(name + '\n' + text); // \n = перенос строки
         };
 
-        handleNameChange = e => {
-          this.setState({ name: e.currentTarget.value });
-        };
-
-        handleTextChange = e => {
-          this.setState({ text: e.currentTarget.value });
+        handleChange = e => {
+          const { id, value } = e.currentTarget;
+          this.setState({ [id]: e.currentTarget.value });
         };
 
         handleCheckboxChange = e => {
-          // обработчик кликов по чекбоксу
-          // чтобы установить true/false считываем свойство checked
           this.setState({ agree: e.currentTarget.checked });
+        };
+
+        validate = () => {
+          const { name, text, agree } = this.state;
+          if (name.trim() && text.trim() && agree) {
+            return true;
+          }
+          return false;
         };
 
         render() {
@@ -213,14 +216,16 @@
           return (
             <form className='add'>
               <input
+                id='name'
                 type='text'
-                onChange={this.handleNameChange}
+                onChange={this.handleChange}
                 className='add__author'
                 placeholder='Ваше имя'
                 value={name}
               />
               <textarea
-                onChange={this.handleTextChange}
+                id='text'
+                onChange={this.handleChange}
                 className='add__text'
                 placeholder='Текст новости'
                 value={text}
@@ -232,7 +237,7 @@
               <button
                 className='add__btn'
                 onClick={this.onBtnClickHandler}
-                disabled={!agree}
+                disabled={!this.validate()}
               >
                 Показать alert
               </button>
@@ -244,8 +249,8 @@
       const App = () => {
         return (
           <React.Fragment>
-            <h3>Новости</h3>
             <Add />
+            <h3>Новости</h3>
             <News data={myNews} />
           </React.Fragment>
         );
