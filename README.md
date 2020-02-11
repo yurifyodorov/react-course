@@ -11,6 +11,7 @@ Learning React here
   <li><a href="https://reactjs.org/docs/events.html#supported-events">Полный список событий</a></li>
   <li><a href="https://reactjs.org/docs/react-component.html#setstate">Полный список возможностей setState</a></li>
   <li><a href="https://facebook.github.io/flux/">Что такое flux-подход?</a></li>
+  <li>Полный список: <a href="https://reactjs.org/docs/react-component.html#the-component-lifecycle">lifecycle-methods</a></li>
 </ol>
 
 <h4>Как еще можно управлять состоянием?</h4>
@@ -20,7 +21,3 @@ Learning React here
   <li>Context API</li>
   <li><a href="https://facebook.github.io/flux/">flux-подход</a> (чистый flux не используется)</li>
 </ul>
-
-<ol>
-  <li>Полный список: <a href="https://reactjs.org/docs/react-component.html#the-component-lifecycle">lifecycle-methods</a></li>
-</ol>
