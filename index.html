@@ -54,7 +54,8 @@
           id: 1,
           author: 'Саша Печкин',
           text: 'В четверг, четвертого числа...',
-          bigText: 'в четыре с четвертью часа четыре чёрненьких чумазеньких чертёнка чертили чёрными чернилами чертёж.'
+          bigText:
+            'в четыре с четвертью часа четыре чёрненьких чумазеньких чертёнка чертили чёрными чернилами чертёж.'
         },
         {
           id: 2,
@@ -71,8 +72,10 @@
         {
           id: 4,
           author: 'Гость',
-          text: 'Бесплатно. Без смс, про реакт, заходи - https://maxpfrontend.ru',
-          bigText: 'Еще есть группа VK, telegram и канал на youtube! Вся инфа на сайте, не реклама!'
+          text:
+            'Бесплатно. Без смс, про реакт, заходи - https://maxpfrontend.ru',
+          bigText:
+            'Еще есть группа VK, telegram и канал на youtube! Вся инфа на сайте, не реклама!'
         }
       ];
 
@@ -92,7 +95,11 @@
               <p className='news__author'>{author}:</p>
               <p className='news__text'>{text}</p>
               {!visible && (
-                <a onClick={this.handleReadMoreClck} href='#' className='news__readmore'>
+                <a
+                  onClick={this.handleReadMoreClck}
+                  href='#'
+                  className='news__readmore'
+                >
                   Подробнее
                 </a>
               )}
@@ -135,7 +142,11 @@
           return (
             <div className='news'>
               {this.renderNews()}
-              {data.length ? <strong className={'news__count'}>Всего новостей: {data.length}</strong> : null}
+              {data.length ? (
+                <strong className={'news__count'}>
+                  Всего новостей: {data.length}
+                </strong>
+              ) : null}
             </div>
           );
         }
@@ -147,18 +158,13 @@
 
       // --- добавили test input ---
       class TestInput extends React.Component {
-        state = {
-          myValue: ''
-        };
-
-        // используется e.currentTarget.value
-        onChangeHandler = e => {
-          this.setState({ myValue: e.currentTarget.value });
-        };
-
-        // в обработчике считывать значение this.state.myValue
-        onBtnClickHandler = e => {
-          alert(this.state.myValue);
+        // поменял 'state' на 'constructor'
+        constructor(props) {
+          super(props);
+          this.input = React.createRef();
+        }
+        onBtnClickHandler = () => {
+          alert(this.input.current.value);
         };
 
         render() {
@@ -166,9 +172,9 @@
             <React.Fragment>
               <input
                 className='test-input'
-                onChange={this.onChangeHandler}
-                value={this.state.myValue}
+                defaultValue=''
                 placeholder='введите значение'
+                ref={this.input}
               />
               <button onClick={this.onBtnClickHandler}>Показать alert</button>
             </React.Fragment>
