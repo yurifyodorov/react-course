@@ -36,12 +36,36 @@
         text-decoration: underline;
         color: #007ddc;
       }
-      .news__count {
-        margin: 10px 0 0 0;
-        display: block;
-      }
-      .test-input {
+
+      .add {
         margin: 0 5px 5px 0;
+        width: 210px;
+        border: 1px dashed rgba(0, 89, 181, 0.82);
+        padding: 5px;
+      }
+      .add__author,
+      .add__text,
+      .add__btn,
+      .add__checkrule {
+        display: block;
+        margin: 0 0 5px 0;
+        padding: 5px;
+        width: 94%;
+        border: 1px solid rgba(0, 89, 181, 0.82);
+      }
+      .add__checkrule {
+        border: none;
+        font-size: 12px;
+      }
+      .add__btn {
+        box-sizing: content-box;
+        color: #fff;
+        text-transform: uppercase;
+        background: #007ddc;
+      }
+      .add__btn:disabled {
+        background: #ccc;
+        color: #999;
       }
     </style>
   </head>
@@ -156,34 +180,51 @@
         data: PropTypes.array.isRequired
       };
 
-      // --- добавили test input ---
-      class TestInput extends React.Component {
-        // поменял 'state' на 'constructor'
-        constructor(props) {
-          super(props);
-          this.input = React.createRef();
-        }
-
-        componentDidMount() {
-          // ставим фокус в input
-          this.input.current.focus();
-        }
-
-        onBtnClickHandler = () => {
-          alert(this.input.current.value);
+      class Add extends React.Component {
+        state = {
+          // добавили начальное состояние
+          name: '',
+          text: ''
+        };
+        onBtnClickHandler = e => {
+          e.preventDefault();
         };
 
+        // обработчик, в котором обновляем name
+        handleNameChange = e => {
+          this.setState({ name: e.currentTarget.value });
+        };
+
+        // обработчик, в котором обновляем text
+        handleTextChange = e => {
+          this.setState({ text: e.currentTarget.value });
+        };
         render() {
+          const { name, text } = this.state; // вытащили значения из стейта
+
+          // добавили value для name и для textarea
           return (
-            <React.Fragment>
+            <form className='add'>
               <input
-                className='test-input'
-                defaultValue=''
-                placeholder='введите значение'
-                ref={this.input}
+                type='text'
+                onChange={this.handleNameChange}
+                className='add__author'
+                placeholder='Ваше имя'
+                value={name}
               />
-              <button onClick={this.onBtnClickHandler}>Показать alert</button>
-            </React.Fragment>
+              <textarea
+                onChange={this.handleTextChange}
+                className='add__text'
+                placeholder='Текст новости'
+                value={text}
+              ></textarea>
+              <label className='add__checkrule'>
+                <input type='checkbox' /> Я согласен с правилами
+              </label>
+              <button className='add__btn' onClick={this.onBtnClickHandler}>
+                Показать alert
+              </button>
+            </form>
           );
         }
       }
@@ -192,7 +233,7 @@
         return (
           <React.Fragment>
             <h3>Новости</h3>
-            <TestInput /> {/* добавили вывод компонента */}
+            <Add />
             <News data={myNews} />
           </React.Fragment>
         );
