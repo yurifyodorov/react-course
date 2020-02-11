@@ -189,6 +189,8 @@
 
         onBtnClickHandler = e => {
           e.preventDefault();
+          const { name, text } = this.state;
+          alert(name + '\n' + text); // \n = перенос строки
         };
 
         handleNameChange = e => {
